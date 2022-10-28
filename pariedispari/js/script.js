@@ -8,30 +8,39 @@ Dichiariamo chi ha vinto.
 */
 
 const eleChoice = prompt('Scegli se pari o dispari').toLowerCase();
-const userNumber = parseInt(prompt('Inserisci un numero da 1 a 5'));
-const botNumber = getRandomNum(1, 5);
-const sum = isEven(userNumber + botNumber);
 
-console.log('Hai scelto ' + eleChoice);
-console.log('Il tuo numero è: ' + userNumber);
-console.log('Il numero del computer è: ' + botNumber);
-console.log('Il totale è: ' + (userNumber + botNumber));
+if ((eleChoice == 'pari') || (eleChoice == 'dispari')){
 
-let evenOrOdd;
-if(sum){
-    evenOrOdd = 'pari'
-} else {
-    evenOrOdd = 'dispari'
-}
-
-if ((eleChoice === 'pari' && sum === true) || (eleChoice === 'dispari' && sum === false)) {
-    console.log('Il numero è: ' + evenOrOdd);
-    console.log('Hai vinto!')
+    const userNumber = parseInt(prompt('Inserisci un numero da 1 a 5'));
+    if ((userNumber > 0) && (userNumber <= 5)){
+        const botNumber = getRandomNum(1, 5);
+        const sum = isEven(userNumber + botNumber);
+        
+        console.log('Hai scelto ' + eleChoice);
+        console.log('Il tuo numero è: ' + userNumber);
+        console.log('Il numero del computer è: ' + botNumber);
+        console.log('Il totale è: ' + (userNumber + botNumber));
+        
+        let evenOrOdd;
+        if(sum){
+            evenOrOdd = 'pari'
+        } else {
+            evenOrOdd = 'dispari'
+        }
+        
+        if ((eleChoice === 'pari' && sum === true) || (eleChoice === 'dispari' && sum === false)) {
+            console.log('Il numero è: ' + evenOrOdd);
+            console.log('Hai vinto!')
+        } else{
+            console.log('Il numero è: ' + evenOrOdd);
+            console.log('Hai perso! Ritenta sarai più fortunato')
+        } 
+    } else {
+    alert('Inserire un numero compreso tra 1 e 5');
+    }
 } else{
-    console.log('Il numero è: ' + evenOrOdd);
-    console.log('Hai perso! Ritenta sarai più fortunato')
+    alert('Per favore scegliere se pari o dispari')
 }
-
 
 function getRandomNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
